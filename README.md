@@ -68,7 +68,6 @@ python youtube_downloader_pro.py
    - Export the download history
 
 ## Screenshots
-*(Add screenshots here if available, such as the main window, queue tab, etc.)*
 ![image](https://github.com/user-attachments/assets/2db61f18-6cf7-415a-8bd1-28bae174c632)
 
 ## Code Structure
