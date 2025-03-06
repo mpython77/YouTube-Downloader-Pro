@@ -33,7 +33,7 @@ pip install yt-dlp tkinter pillow requests
 ## Installation
 Clone the repository:
 ```bash
-git clone https://github.com/yourusername/youtube-downloader-pro.git
+git clone https://github.com/mpython77/YouTube-Downloader-Pro.git
 cd youtube-downloader-pro
 ```
 Install dependencies:
