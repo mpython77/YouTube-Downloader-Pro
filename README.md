@@ -1,88 +1,134 @@
-# YouTube Downloader Pro
+# 🎬 YouTube Downloader Pro v2.0
 
-A feature-rich, GUI-based YouTube downloader built with Python, Tkinter, and yt_dlp. This application allows users to download YouTube videos and audio files with customizable options such as format, quality, subtitles, and speed limits. It supports queuing multiple downloads, viewing download history, and exporting download lists.
+[![Python 3.10+](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://python.org)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Tests](https://img.shields.io/badge/Tests-103%20passed-brightgreen.svg)](tests/)
 
-## Features
-- **Download Formats:** Choose between video (MP4) or audio (MP3) formats.
-- **Video Quality:** Select resolutions (Best, 2160p, 1440p, 1080p, 720p, 480p, 360p).
-- **Subtitles:** Download subtitles in multiple languages and optionally embed them into the video.
-- **Speed Limiting:** Control download speed (e.g., 500K, 1M, 2M, 5M, 10M).
-- **Queue Management:** Add multiple URLs to a download queue and process them sequentially.
-- **Download History:** Track completed downloads with timestamps and file paths.
-- **Thumbnail Preview:** Displays video thumbnails when URLs are added.
-- **Export List:** Save download history as a JSON file.
-- **Cross-Platform:** Works on Windows, macOS, and Linux.
-- **Modern UI:** A sleek, dark-themed interface with progress bars and status updates.
+A professional YouTube downloader built with Python, Tkinter, and yt-dlp. Features a beautiful Catppuccin Mocha-themed UI, thread-safe downloads, retry logic, persistent history, and a modular MVC architecture.
 
-## Prerequisites
-Before running the application, ensure you have the following installed:
+---
 
-### Required Software:
-- **Python 3.7 or higher**
-- **FFmpeg** (required for audio extraction and subtitle embedding):
-  - Install on Windows: Download from the FFmpeg website and add it to `PATH`.
-  - Install on macOS: `brew install ffmpeg`
-  - Install on Linux: `sudo apt install ffmpeg` (Ubuntu/Debian) or the equivalent for your distro.
+## ✨ Features
 
-### Required Python Packages:
-Install dependencies via pip:
-```bash
-pip install yt-dlp tkinter pillow requests
+### Core
+- 🎬 **Video Download** — MP4 (360p to 4K)
+- 🎵 **Audio Download** — MP3 (96–320 kbps)
+- 📋 **Playlist Support** — auto-detection & batch download
+- 📝 **Subtitle Download** — 11 languages, auto-subtitles, embedding
+
+### Smart Queue
+- 🔄 **Retry Logic** — automatic 3-attempt retry with delay
+- 🚫 **Duplicate Detection** — prevents adding the same URL twice
+- ⏸️ **Real Pause/Resume** — thread-based, doesn't restart
+- 🗂️ **Context Menu** — right-click to retry, remove, reorder
+- ✅ **Remove Completed** / 🔄 **Retry Failed** buttons
+
+### Performance
+- 💾 **Video Info Cache** — no redundant yt-dlp calls
+- 🖼️ **Thumbnail Cache** — in-memory async loading
+- ⚡ **Speed Limiting** — 500KB/s to 20MB/s
+- 🔧 **FFmpeg Integration** — status indicator in header
+
+### UI & UX
+- 🎨 **Catppuccin Mocha** dark theme
+- 📊 **Session Counters** — completed/failed/pending
+- ⏱️ **Download Timer** — total elapsed time
+- ⌨️ **Keyboard Shortcuts** — F5, Escape, Ctrl+V, Ctrl+B, etc.
+- 📋 **Clipboard Monitor** — auto-detect YouTube URLs
+- 📜 **Persistent History** — JSON/CSV export
+
+---
+
+## ⌨️ Keyboard Shortcuts
+
+| Shortcut | Action |
+|----------|--------|
+| `Enter` | Add URL to queue |
+| `F5` | Start download |
+| `Escape` | Cancel download |
+| `Ctrl+V` | Paste URL from clipboard |
+| `Ctrl+B` | Batch add URLs |
+| `Ctrl+S` | Open settings |
+| `Ctrl+O` | Change save location |
+| `Ctrl+Q` | Quit |
+| `F1` | Show help |
+| `Delete` | Clear queue |
+| Right Click | Context menu (queue) |
+
+---
+
+## 📁 Project Structure
+
+```
+YouTube-Downloader-Pro/
+├── main.py                  # Entry point
+├── config.py                # Settings, theme, logging
+├── models.py                # Dataclass models + enums
+├── services/
+│   ├── downloader.py        # Thread-safe yt-dlp wrapper
+│   ├── thumbnail.py         # Async thumbnail + cache
+│   └── history.py           # Persistent JSON history
+├── ui/
+│   ├── styles.py            # Catppuccin Mocha theme
+│   ├── components.py        # Reusable widgets + dialogs
+│   └── main_window.py       # Main GUI (MVC)
+├── utils/
+│   ├── validators.py        # URL validation
+│   └── file_utils.py        # Cross-platform file ops
+├── tests/                   # 103 unit tests
+│   ├── test_models.py
+│   ├── test_validators.py
+│   ├── test_history.py
+│   ├── test_downloader.py
+│   └── test_app.py
+├── requirements.txt
+├── LICENSE                  # MIT — no restrictions
+└── README.md
 ```
 
-## Installation
-Clone the repository:
+---
+
+## 🚀 Getting Started
+
+### Requirements
+- Python 3.10+
+- FFmpeg (optional, required for audio & subtitles)
+
+### Installation
+
 ```bash
 git clone https://github.com/mpython77/YouTube-Downloader-Pro.git
-cd youtube-downloader-pro
-```
-Install dependencies:
-```bash
+cd YouTube-Downloader-Pro
 pip install -r requirements.txt
+python main.py
 ```
-*(Ensure `requirements.txt` contains yt-dlp, pillow, and requests if not already present.)*
 
-Run the application:
+### Running Tests
+
 ```bash
-python youtube_downloader_pro.py
+python -m pytest tests/ -v
 ```
 
-## Usage
-1. Launch the application:
-   ```bash
-   python youtube_downloader_pro.py
-   ```
-2. Enter a YouTube URL in the input field.
-3. Choose your download settings:
-   - **Format:** Video (MP4) or Audio (MP3)
-   - **Quality:** Select resolution for videos
-   - **Subtitles:** Enable and choose language (optional embedding)
-   - **Speed Limit:** Set a download speed cap (optional)
-4. Click **"Add"** to queue the video.
-5. Click **"Start Download"** to begin downloading.
-6. Monitor progress via the progress bar and status updates.
-7. Additional features:
-   - Pause/Resume downloads
-   - Clear the queue
-   - Open the last downloaded file or folder
-   - Export the download history
+---
 
-## Screenshots
-![image](https://github.com/user-attachments/assets/2db61f18-6cf7-415a-8bd1-28bae174c632)
+## 📜 License
 
-## Code Structure
-- **ImprovedYouTubeDownloader Class:** Main application logic with GUI setup and download functionality.
-- **GUI Components:** Uses Tkinter with custom styles for a modern look.
-- **Download Handling:** Leverages yt_dlp for downloading and threading for non-blocking operations.
-- **File Management:** Handles output directories, file paths, and history tracking.
+MIT License — free for personal and commercial use. See [LICENSE](LICENSE) for details.
 
+---
 
+## 📋 Changelog
 
-## License
-This project is licensed under the **GPL-3.0 ** - see the `LICENSE` file for details.
-
-## Acknowledgments
-- **yt-dlp** for YouTube downloading capabilities.
-- **Tkinter** for the GUI framework.
-- **Pillow** for image processing.
-
+### v2.0.0 (2026-03-11)
+- Modular MVC architecture (16 files)
+- Retry logic (3 attempts + delay)
+- Duplicate URL detection
+- FFmpeg check & indicator
+- Video info caching
+- Context menu in queue
+- Session counters & timer
+- Keyboard shortcuts dialog
+- Auto-retry prompt on failure
+- 103 unit tests (100% passed)
+- Full English codebase
+- MIT License

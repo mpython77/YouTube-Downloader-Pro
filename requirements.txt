@@ -1,13 +1,14 @@
-# requirements.txt for YouTube Downloader Pro
+# requirements.txt for YouTube Downloader Pro v2.0
 
-# Core library for downloading YouTube videos and audio
+# Core — YouTube downloading
 yt-dlp>=2023.10.13
 
-# GUI framework (tkinter is part of Python standard library, but included for clarity)
-# tkinter  # Not needed in requirements.txt as it's built-in
-
-# Image processing for displaying thumbnails
+# Image processing for thumbnails
 pillow>=10.0.0
 
-# HTTP requests for fetching thumbnails
+# HTTP requests for thumbnails
 requests>=2.31.0
+
+# Testing
+pytest>=7.0.0
+pytest-cov>=4.0.0
